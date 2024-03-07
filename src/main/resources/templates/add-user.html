@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <title>Lista de Usuários</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h2 class="ui dividing header inverted">Criar Novo Usuário</h2>
+    <form th:action="@{/users}" th:object="${user}" method="post" class="ui form inverted">
+        <div class="field inverted">
+            <label for="firstName">Primeiro Nome:</label>
+            <input type="text" id="firstName" th:field="*{firstName}" placeholder="Primeiro Nome">
+        </div>
+        <div class="field inverted">
+            <label for="lastName">Sobrenome:</label>
+            <input type="text" id="lastName" th:field="*{lastName}" placeholder="Sobrenome">
+        </div>
+        <div class="field inverted">
+            <label for="password">Senha:</label>
+            <input type="password" id="password" th:field="*{password}" placeholder="Senha">
+        </div>
+        <button type="submit" class="ui button primary fluid">Criar</button>
+    </form>
+</div>
+
+
+</body>
+</html>

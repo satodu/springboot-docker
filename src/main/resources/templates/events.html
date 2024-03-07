@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <title>Lista de Usuários</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="ui grid">
+        <div class="four column row">
+            <div class="left floated column">
+                <h2 class="ui header inverted">Lista de Eventos</h2>
+            </div>
+            <div class="right floated column">
+                <a href="/events/new">
+                    <button type="button" class=" compact ui button primary right floated">
+                        <i class="plus icon"></i>
+                        Criar Event
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+        <div class="ui inverted cards">
+            <div class="card" th:each="event : ${events}">
+                <div class="image">
+                    <img th:src="@{/images/eventholder.png}">
+                </div>
+                <div class="content">
+                    <span class="header" th:text="${event.eventName}"></span>
+                    <div class="meta">
+                        <a th:text="${event.eventType}"></a>
+                    </div>
+                    <div class="description" th:text="${event.eventDescription}"></div>
+                </div>
+                <div class="extra content">
+                    <div class="ui basic green button fluid">Subscribe</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

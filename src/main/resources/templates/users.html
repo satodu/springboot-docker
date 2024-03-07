@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <title>Lista de Usuários</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="ui grid">
+        <div class="four column row">
+            <div class="left floated column">
+                <h2 class="ui header inverted">Lista de Usuários</h2>
+            </div>
+            <div class="right floated column">
+                <a href="/users/new">
+                    <button type="button" class=" compact ui button primary right floated">
+                        <i class="plus icon"></i>
+                        Criar User
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <table class="ui celled selectable inverted table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>Criado em</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}" th:onclick="'window.location.href=\'/user/' + ${user.id} + '\''">
+            <td th:text="${user.id}">ID</td>
+            <td th:text="${user.firstName}">Primeiro Nome</td>
+            <td th:text="${user.lastName}">Sobrenome</td>
+            <td th:text="${#temporals.format(user.createdAt, 'dd/MM/yyyy HH:mm:ss')}">Criado em</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

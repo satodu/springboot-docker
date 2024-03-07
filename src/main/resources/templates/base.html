@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title layout:title-pattern="$CONTENT_TITLE | Aplicação">Título Padrão</title>
+    <!-- Recursos do Fomantic UI -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.3/dist/semantic.min.js"></script>
+</head>
+<body style="background-color: #14191B;">
+<div class="ui container">
+    <div th:replace="~{fragments/menu :: headerFragment}"></div>
+    <div layout:fragment="content" style="margin-top: 55px;">
+        <!-- Conteúdo padrão ou vazio -->
+    </div>
+    <!-- Footer, scripts, etc. -->
+</div>
+</body>
+</html>
