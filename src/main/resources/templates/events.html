@@ -22,10 +22,11 @@
             </div>
         </div>
     </div>
-        <div class="ui inverted cards">
+    <div class="ui grid">
+        <div class="ui inverted centered cards">
             <div class="card" th:each="event : ${events}">
                 <div class="image">
-                    <img th:src="@{/images/eventholder.png}">
+                    <img th:src="@{/assets/images/eventholder.png}">
                 </div>
                 <div class="content">
                     <span class="header" th:text="${event.eventName}"></span>

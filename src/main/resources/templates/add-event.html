@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{base}">
+<head>
+    <title>Adicionar eventos</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h2 class="ui dividing header inverted">Criar Evento</h2>
+    <form th:object="${event}" class="ui form inverted">
+        <div class="field inverted">
+            <label for="eventName">Nome do evento:</label>
+            <input type="text" id="eventName" th:field="*{eventName}" placeholder="Nome do evento">
+        </div>
+        <div class="field inverted">
+            <label for="eventType">Tipo de evento:</label>
+            <input type="text" id="eventType" th:field="*{eventType}" placeholder="Tipo de evento">
+        </div>
+        <div class="field inverted">
+            <label for="eventDescription">Descrição:</label>
+            <textarea id="eventDescription" th:field="*{eventDescription}" placeholder="Descrição"></textarea>
+        </div>
+        <div class="field inverted">
+            <label>Data do evento:</label>
+            <div class="ui inverted calendar" id="standard_calendar">
+                <div class="ui fluid input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" th:field="*{eventDate}" placeholder="Date/Time">
+                </div>
+            </div>
+        </div>
+        <button type="button" id="addEvent" class="ui button primary fluid">Criar evento</button>
+    </form>
+    <script>
+        $('#standard_calendar').calendar();
+        $(document).ready(function() {
+            $('#addEvent').click(function() {
+                // Supondo que você tenha um input para a data com um ID específico, por exemplo, #eventDate
+                var eventDate = $('#standard_calendar input').val(); // Ajuste este seletor conforme necessário
+                var formattedDate = moment(eventDate).format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+
+                // Cria um objeto com os dados do formulário
+                var eventData = {
+                    eventName: $('#eventName').val(),
+                    eventType: $('#eventType').val(),
+                    eventDescription: $('#eventDescription').val(),
+                    eventDate: formattedDate
+                };
+
+                console.log(eventData)
+
+                // Faz a requisição POST usando AJAX
+                $.ajax({
+                    url: '/events',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(eventData), // Converte os dados do formulário para JSON
+                    success: function(response) {
+                        // Aqui você pode adicionar qualquer código para tratar a resposta do servidor
+                        console.log('Evento criado com sucesso:', response);
+                        alert('Evento criado com sucesso!');
+                    },
+                    error: function(xhr, status, error) {
+                        // Trata falhas na requisição
+                        console.error('Erro ao criar evento:', xhr.responseText);
+                        alert('Erro ao criar evento. Verifique os dados e tente novamente.');
+                    }
+                });
+            });
+        });
+    </script>
+</div>
+</body>
+</html>

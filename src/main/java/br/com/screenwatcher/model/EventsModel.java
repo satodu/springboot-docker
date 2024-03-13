@@ -27,6 +27,9 @@ public class EventsModel {
     @Column(name = "created_at", nullable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createdAt;
 
+    @Column(name = "event_date", nullable = true, columnDefinition = "TIMESTAMP")
+    private LocalDateTime eventDate;
+
     // Getters e Setters
 
     public Long getId() {
@@ -67,5 +70,13 @@ public class EventsModel {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(LocalDateTime eventDate) {
+        this.eventDate = eventDate;
     }
 }
